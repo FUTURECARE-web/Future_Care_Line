@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MC Search System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .result {
+            background: #f5f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #e0e5ff;
+        }
+        .result-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #d0d5ff;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #444;
+            display: inline-block;
+            width: 120px;
+        }
+        .value {
+            color: #222;
+        }
+        .not-found {
+            color: #d32f2f;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>MEDICAL CERTIFICATE VERIFY</h2>
+    <input type="text" id="searchInput" placeholder="Enter MC ID and press Enter">
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    const data = [
+{ 
+ "MC_ID": "10288", 
+ "NAME": "TFNJHTYJN", 
+ "NRIC": "1561", 
+ "START_DATE": "56156", 
+ "END_DATE": "15615", 
+ "CLINIC": "JBK15", 
+ "ISSUE_DATE": "511" 
+ },
+        {
+            "MC_ID": "01",
+            "NAME": "WEERASINGHE DEWAGE SULAKSHANA",
+            "NRIC": "901234-56-7890",
+            "START_DATE": "2025-06-10",
+            "END_DATE": "2025-06-12",
+            "CLINIC": "City Health Clinic",
+            "ISSUE_DATE": "2025-06-10"
+        },
+        {
+            "MC_ID": "02",
+            "NAME": "Kumari Silva",
+            "NRIC": "880123-45-6789",
+            "START_DATE": "2025-06-11",
+            "END_DATE": "2025-06-13",
+            "CLINIC": "MediCare Hospital",
+            "ISSUE_DATE": "2025-06-11"
+        },
+        {
+            "MC_ID": "03",
+            "NAME": " PRAMOD WEERASINGHE",
+            "NRIC": "901234-56-7890",
+            "START_DATE": "2025-06-10",
+            "END_DATE": "2025-06-12",
+            "CLINIC": "City Health Clinic",
+            "ISSUE_DATE": "2025-06-10"
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    ];
+
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const id = this.value.trim();
+            const entry = data.find(d => d.MC_ID === id);
+            const resultDiv = document.getElementById('result');
+
+            if (entry) {
+                resultDiv.innerHTML = `
+                    <div class="result-item">
+                        <span class="label">MC ID:</span>
+                        <span class="value">${entry.MC_ID}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Name:</span>
+                        <span class="value">${entry.NAME}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">NRIC:</span>
+                        <span class="value">${entry.NRIC}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Start Date:</span>
+                        <span class="value">${entry.START_DATE}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">End Date:</span>
+                        <span class="value">${entry.END_DATE}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Clinic:</span>
+                        <span class="value">${entry.CLINIC}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Issue Date:</span>
+                        <span class="value">${entry.ISSUE_DATE}</span>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = '<div class="not-found">No data found for that MC ID</div>';
+            }
+        }
+    });
+</script>
+</body>
+</html>
